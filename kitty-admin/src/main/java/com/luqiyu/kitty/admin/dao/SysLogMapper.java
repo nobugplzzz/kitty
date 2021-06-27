@@ -13,4 +13,6 @@ public interface SysLogMapper {
     List<SysLog> selectAll();
 
     int updateByPrimaryKey(SysLog record);
+
+    List<SysLog> findPage();
 }

@@ -7,16 +7,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="kitty-common" />
-        <module name="kitty-boot" />
+        <module name="kitty-core" />
         <module name="kitty-admin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="kitty-boot" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="kitty-admin" options="-parameters" />
       <module name="kitty-boot" options="-parameters" />
       <module name="kitty-common" options="-parameters" />
+      <module name="kitty-core" options="-parameters" />
     </option>
   </component>
 </project>

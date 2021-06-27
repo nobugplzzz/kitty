@@ -9,15 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kitty-common</artifactId>
+    <artifactId>kitty-core</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
-    <name>kitty-common</name>
-    <description>kitty-common</description>
+    <name>kitty-core</name>
+    <description>kitty-core</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <pagehelper.spring.version>1.2.5</pagehelper.spring.version>
     </properties>
 
+    <dependencies>
+        <!-- pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.luqiyu</groupId>
+            <artifactId>kitty-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 </project>

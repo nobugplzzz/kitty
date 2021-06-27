@@ -17,6 +17,10 @@
       <arg column="del_flag" jdbcType="TINYINT" javaType="java.lang.Byte" />
     </constructor>
   </resultMap>
+  <sql id="Base_Column_List">
+    id, value, label, type, description, sort, create_by, create_time, last_update_by,
+    last_update_time, remarks, del_flag
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_dict
     where id = #{id,jdbcType=BIGINT}
@@ -58,6 +62,11 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, `value`, `label`, `type`, description, sort, create_by, create_time, last_update_by, 
     last_update_time, remarks, del_flag
+    from sys_dict
+  </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
     from sys_dict
   </select>
 </mapper>

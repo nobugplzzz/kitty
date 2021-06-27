@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>com.luqiyu</groupId>
-    <artifactId>kitty-mouduls</artifactId>
+    <artifactId>kitty</artifactId>
     <packaging>pom</packaging>
     <version>${project.version}</version>
 
@@ -45,6 +45,7 @@
         <module>kitty-common</module>
         <module>kitty-admin</module>
         <module>kitty-boot</module>
+        <module>kitty-core</module>
     </modules>
 
 </project>
