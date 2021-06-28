@@ -1,14 +1,13 @@
 package com.luqiyu.kitty.admin.controller;
 
 import com.luqiyu.kitty.admin.service.SysUserService;
+import com.luqiyu.kitty.core.http.HttpResult;
+import com.luqiyu.kitty.core.page.PageRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 控制器
@@ -24,17 +23,11 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
-    @ApiOperation("根据用户id查询用户")
-    @ApiImplicitParam(name = "userId",value = "用户id",required = true,dataType = "Long")
-    @GetMapping(value="/findByUserId")
-    public Object findByUserId(@RequestParam Long userId) {
-        return sysUserService.findByUserId(userId);
+
+    @ApiOperation("分页查询")
+    @PostMapping(value="/findPage")
+    public HttpResult findPage(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(sysUserService.findPage(pageRequest));
     }
 
-
-    @ApiOperation("查询全部用户")
-    @GetMapping(value="/findAll")
-    public Object findAll() {
-        return sysUserService.findAll();
-    }
 }

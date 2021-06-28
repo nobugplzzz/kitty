@@ -2,11 +2,12 @@ package com.luqiyu.kitty.admin.dao;
 
 import com.luqiyu.kitty.admin.model.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
+@Component
 public interface SysUserMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -17,4 +18,10 @@ public interface SysUserMapper {
     List<SysUser> selectAll();
 
     int updateByPrimaryKey(SysUser record);
+
+    /**
+     *  分页查询
+     * @return 用户列表
+     */
+    List<SysUser> findPage();
 }

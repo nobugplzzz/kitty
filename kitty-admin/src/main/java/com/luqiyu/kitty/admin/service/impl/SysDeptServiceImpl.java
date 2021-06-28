@@ -1,9 +1,11 @@
 package com.luqiyu.kitty.admin.service.impl;
 
+import com.luqiyu.kitty.admin.dao.SysDeptMapper;
 import com.luqiyu.kitty.admin.model.SysDept;
 import com.luqiyu.kitty.admin.service.SysDeptService;
 import com.luqiyu.kitty.core.page.PageRequest;
 import com.luqiyu.kitty.core.page.PageResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
 @Service
 public class SysDeptServiceImpl implements SysDeptService {
 
+	@Autowired
+	private SysDeptMapper sysDeptMapper;
 
 	@Override
 	public int save(SysDept record) {

@@ -1,6 +1,9 @@
 package com.luqiyu.kitty.admin.service;
 
+import com.luqiyu.kitty.admin.model.SysRole;
 import com.luqiyu.kitty.admin.model.SysUser;
+import com.luqiyu.kitty.admin.model.SysUserRole;
+import com.luqiyu.kitty.core.service.CurdService;
 
 import java.util.List;
 
@@ -10,17 +13,11 @@ import java.util.List;
  * @author: 启誉
  * @create: 2021-06-25
  **/
-public interface SysUserService {
+public interface SysUserService extends CurdService<SysUser> {
     /**
-     * 根据用户ID查找用户
-     * @param userId
+     * 查找用户的角色集合
+     * @param userName
      * @return
      */
-    SysUser findByUserId(Long userId);
-
-    /**
-     * 查找所有用户
-     * @return
-     */
-    List<SysUser> findAll();
+    List<SysUserRole> findUserRoles(Long userId);
 }

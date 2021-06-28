@@ -20,6 +20,12 @@ public class SysUserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public SysUserRole(Long id, Long userId, Long roleId) {
+        this.id = id;
+        this.userId = userId;
+        this.roleId = roleId;
+    }
+
     public SysUserRole(Long id, Long userId, Long roleId, String createBy, Date createTime, String lastUpdateBy, Date lastUpdateTime) {
         this.id = id;
         this.userId = userId;

@@ -1,7 +1,9 @@
 package com.luqiyu.kitty.admin.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SysUser implements Serializable {
     private Long id;
@@ -20,6 +22,8 @@ public class SysUser implements Serializable {
 
     private Long deptId;
 
+    private String deptName;
+
     private String createBy;
 
     private Date createTime;
@@ -29,6 +33,10 @@ public class SysUser implements Serializable {
     private Date lastUpdateTime;
 
     private Byte delFlag;
+
+    private String roleNames;
+
+    private List<SysUserRole> userRoles = new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
 
@@ -154,6 +162,31 @@ public class SysUser implements Serializable {
 
     public void setDelFlag(Byte delFlag) {
         this.delFlag = delFlag;
+    }
+
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getRoleNames() {
+        return roleNames;
+    }
+
+    public void setRoleNames(String roleNames) {
+        this.roleNames = roleNames;
+    }
+
+    public List<SysUserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<SysUserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 
     @Override

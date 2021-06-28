@@ -1,8 +1,11 @@
 package com.luqiyu.kitty.admin.dao;
 
 import com.luqiyu.kitty.admin.model.SysRoleDept;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface SysRoleDeptMapper {
     int deleteByPrimaryKey(Long id);
 
