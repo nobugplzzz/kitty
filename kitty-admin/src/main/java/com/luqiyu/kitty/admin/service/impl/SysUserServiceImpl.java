@@ -56,8 +56,8 @@ public class SysUserServiceImpl implements SysUserService {
         PageResult pageResult = null;
         String name = getColumnFilterValue(pageRequest, "name");
         String email = getColumnFilterValue(pageRequest, "email");
-        if(name != null) {
-            if(email != null) {
+        if (name != null) {
+            if (email != null) {
                 pageResult = MybatisPageHelper.findPage(pageRequest, sysUserMapper, "findPageByNameAndEmail", name, email);
             } else {
                 pageResult = MybatisPageHelper.findPage(pageRequest, sysUserMapper, "findPageByName", name);
@@ -70,15 +70,21 @@ public class SysUserServiceImpl implements SysUserService {
         return pageResult;
     }
 
+    @Override
+    public List<SysUserRole> findUserRoles(Long userId) {
+        return sysUserRoleMapper.findUserRoles(userId);
+    }
+
     /**
      * 获取过滤字段的值
-     * @param filterName
+     *
+     * @param filterName 过滤字段
      * @return
      */
     public String getColumnFilterValue(PageRequest pageRequest, String filterName) {
         String value = null;
         ColumnFilter columnFilter = pageRequest.getColumnFilter(filterName);
-        if(columnFilter != null) {
+        if (columnFilter != null) {
             value = columnFilter.getValue();
         }
         return value;
@@ -86,11 +92,12 @@ public class SysUserServiceImpl implements SysUserService {
 
     /**
      * 加载用户角色
-     * @param pageResult
+     *
+     * @param pageResult 分页查询返回结果
      */
     private void setUserRoles(PageResult pageResult) {
         List<?> content = pageResult.getContent();
-        for(Object object:content) {
+        for (Object object : content) {
             SysUser sysUser = (SysUser) object;
             List<SysUserRole> userRoles = findUserRoles(sysUser.getId());
             sysUser.setUserRoles(userRoles);
@@ -98,25 +105,27 @@ public class SysUserServiceImpl implements SysUserService {
         }
     }
 
+    /**
+     * 获取用户角色名称
+     *
+     * @param userRoles 用户角色列表
+     * @return
+     */
     private String getRoleNames(List<SysUserRole> userRoles) {
         StringBuilder sb = new StringBuilder();
-        for(Iterator<SysUserRole> iter = userRoles.iterator(); iter.hasNext();) {
+        for (Iterator<SysUserRole> iter = userRoles.iterator(); iter.hasNext(); ) {
             SysUserRole userRole = iter.next();
             SysRole sysRole = sysRoleMapper.selectByPrimaryKey(userRole.getRoleId());
-            if(sysRole == null) {
-                continue ;
+            if (sysRole == null) {
+                continue;
             }
             sb.append(sysRole.getRemark());
-            if(iter.hasNext()) {
+            if (iter.hasNext()) {
                 sb.append(", ");
             }
         }
         return sb.toString();
     }
 
-    @Override
-    public List<SysUserRole> findUserRoles(Long userId) {
-        return sysUserRoleMapper.findUserRoles(userId);
-    }
 }
 

@@ -6,12 +6,15 @@
       <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="role_id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="create_by" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="last_update_by" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="last_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+<!--      <arg column="create_by" jdbcType="VARCHAR" javaType="java.lang.String" />-->
+<!--      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />-->
+<!--      <arg column="last_update_by" jdbcType="VARCHAR" javaType="java.lang.String" />-->
+<!--      <arg column="last_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />-->
     </constructor>
   </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, role_id
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_user_role
     where id = #{id,jdbcType=BIGINT}
@@ -45,5 +48,11 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, user_id, role_id, create_by, create_time, last_update_by, last_update_time
     from sys_user_role
+  </select>
+  <select id="findUserRoles" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
   </select>
 </mapper>

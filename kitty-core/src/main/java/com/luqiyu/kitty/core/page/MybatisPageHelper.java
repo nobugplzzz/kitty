@@ -7,23 +7,23 @@ import com.luqiyu.kitty.common.utils.ReflectionUtils;
 import java.util.List;
 
 /**
- * MyBatis 分页查询助手
+ * MyBatis 分页查询助手，统一封装了分页逻辑
  *
  * @author: 启誉
  * @create: 2021-06-27
  **/
 public class MybatisPageHelper {
     /**
-     * 查询方法名
+     * 分页查询方法名
      */
     public static final String findPage = "findPage";
 
     /**
      * 分页查询, 约定查询方法名为 “findPage”
+     * DAO查询方法为findPage，那么只需要传入对应的Mapper, 调用MybatisPageHelper直接返回分页数据即可。
      *
      * @param pageRequest 分页请求
      * @param mapper      Dao对象，MyBatis的 Mapper
-     * @param args        方法参数
      * @return
      */
     public static PageResult findPage(PageRequest pageRequest, Object mapper) {
@@ -31,7 +31,7 @@ public class MybatisPageHelper {
     }
 
     /**
-     * 调用分页插件进行分页查询
+     * 调用MybatisPageHelper分页插件进行分页查询，并包装分页信息返回
      *
      * @param pageRequest     分页请求
      * @param mapper          Dao对象，MyBatis的 Mapper
@@ -44,20 +44,21 @@ public class MybatisPageHelper {
         // 设置分页参数
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
+        // PageHelper.startPage 静态方法调用方式分页，紧跟在这个方法后的第一个MyBatis 查询方法会被进行分页。
         PageHelper.startPage(pageNum, pageSize);
         // 利用反射调用查询方法
         Object result = ReflectionUtils.invoke(mapper, queryMethodName, args);
-        return getPageResult(pageRequest, new PageInfo((List) result));
+        // 用PageInfo对结果进行包装
+        return getPageResult(new PageInfo((List) result));
     }
 
     /**
-     * 将分页信息封装到统一的接口
+     * 将包装好的分页信息封装到统一的接口
      *
-     * @param pageRequest
-     * @param page
+     * @param pageInfo 分页信息
      * @return
      */
-    private static PageResult getPageResult(PageRequest pageRequest, PageInfo<?> pageInfo) {
+    private static PageResult getPageResult(PageInfo<?> pageInfo) {
         PageResult pageResult = new PageResult();
         pageResult.setPageNum(pageInfo.getPageNum());
         pageResult.setPageSize(pageInfo.getPageSize());

@@ -30,7 +30,11 @@ spring:
 
 # pagehelper
 pagehelper:
+  # 分页插件会自动检测当前的数据库链接，自动选择合适的分页方式。 指定配置
   helperDialect: mysql
+  # 分页合理化参数
   reasonable: true
+  # 支持通过 Mapper 接口参数来传递分页参数
   supportMethodsArguments: true
+  # 为了支持startPage(Object params)方法，增加了该参数来配置参数映射，是默认值
   params: count=countSql

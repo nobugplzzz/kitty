@@ -18,7 +18,10 @@ public class SysDeptServiceImpl implements SysDeptService {
 
 	@Override
 	public int save(SysDept record) {
-		return 0;
+		if(record.getId() == null || record.getId() == 0) {
+			return sysDeptMapper.insertSelective(record);
+		}
+		return sysDeptMapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
@@ -38,6 +41,11 @@ public class SysDeptServiceImpl implements SysDeptService {
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
+		return null;
+	}
+
+	@Override
+	public List<SysDept> findTree() {
 		return null;
 	}
 }

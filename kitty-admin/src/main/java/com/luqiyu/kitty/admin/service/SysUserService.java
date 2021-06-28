@@ -16,7 +16,8 @@ import java.util.List;
 public interface SysUserService extends CurdService<SysUser> {
     /**
      * 查找用户的角色集合
-     * @param userName
+     *
+     * @param userId 用户id
      * @return
      */
     List<SysUserRole> findUserRoles(Long userId);

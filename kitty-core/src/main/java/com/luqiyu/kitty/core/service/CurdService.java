@@ -15,7 +15,7 @@ public interface CurdService<T> {
     /**
      * 保存操作
      *
-     * @param record
+     * @param record 实体类
      * @return
      */
     int save(T record);
@@ -23,7 +23,7 @@ public interface CurdService<T> {
     /**
      * 删除操作
      *
-     * @param record
+     * @param record 实体类
      * @return
      */
     int delete(T record);
@@ -31,14 +31,14 @@ public interface CurdService<T> {
     /**
      * 批量删除操作
      *
-     * @param entities
+     * @param records 实体类列表
      */
     int delete(List<T> records);
 
     /**
      * 根据ID查询
      *
-     * @param id
+     * @param id 实体id
      * @return
      */
     T findById(Long id);

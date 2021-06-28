@@ -3,7 +3,7 @@ package com.luqiyu.kitty.core.page;
 import java.util.List;
 
 /**
- * 分页返回结果
+ * 分页查询返回结果
  *
  * @author: 启誉
  * @create: 2021-06-27
